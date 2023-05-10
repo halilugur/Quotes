@@ -1,0 +1,7 @@
+{
+  "name": "Quotes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
