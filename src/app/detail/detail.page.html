@@ -1,0 +1,50 @@
+<ion-content
+  [style.background]="backgroundStyle"
+  style="background-repeat: no-repeat; background-size: cover"
+>
+  <a
+    routerLink="/"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    style="
+      display: flex;
+      background-color: #00000080;
+      color: #fff;
+      padding: 10px;
+    "
+    >Back</a
+  >
+  <ion-grid class="content" style="background-color: #00000080;">
+    <ion-card style="background-color: #00000080; color: white">
+      <ion-card-header>
+        <ion-card-title>{{quote?.author}}</ion-card-title>
+        <ion-card-subtitle>ID: {{quote?._id}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content style="font-size: large;">
+        {{quote?.content}}
+      </ion-card-content>
+
+      <ion-grid style="display: flex; align-items: first baseline; padding-left: 15px;">
+        <ion-note>Tags: </ion-note>
+        <ion-item *ngFor="let tag of quote?.tags; let i = index">
+          <ion-note fill="clear">{{tag}}</ion-note>
+        </ion-item>
+      </ion-grid>
+    </ion-card>
+  </ion-grid>
+  <ion-grid style="display: flex; justify-content: center; align-items: center;">
+    <ion-input [(ngModel)]="comment" label="Leave Comment" color="light" style="background-color: #00000080;" label-placement="floating" fill="outline" placeholder="Enter comment"></ion-input>
+    <ion-button color="light" (click)="addComment()">
+      <ion-icon slot="start" name="reorder-four-outline"></ion-icon>
+      Comment
+    </ion-button>
+  </ion-grid>
+  <ion-grid *ngIf="comments.length">
+    <ion-list lines="full" style="background-color: #00000080">
+      <ion-item *ngFor="let comment of comments; let i = index">
+          <ion-label>{{ comment }}</ion-label>
+        </ion-item>
+    </ion-list>
+  </ion-grid>
+</ion-content>

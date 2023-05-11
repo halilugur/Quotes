@@ -1,4 +1,21 @@
-<ion-content [style.background]="backgroundStyle">
-
+<ion-content [style.background]="backgroundStyle" style="background-repeat: no-repeat; background-size: cover;">
+  <ion-grid class="content">
+    <ion-card style="background-color: #00000080; color: white">
+      <ion-card-content style="font-size: large">
+        {{currentlyQuote ? currentlyQuote.content : "Loading..."}}
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
+  <ion-grid>
+    <ion-list lines="full" style="background-color: #00000080">
+      <ion-item *ngFor="let qoute of quotes; let i = index">
+        <ion-item (click)="goToDetail(qoute, images[i])">
+          <ion-avatar slot="start">
+            <img [src]="images[i]" alt="avatar" />
+          </ion-avatar>
+          <ion-label>{{ qoute?.author }}</ion-label>
+        </ion-item>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
 </ion-content>
-
