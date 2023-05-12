@@ -1,6 +1,6 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Quote } from './../model/Quote';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-detail',
@@ -8,21 +8,18 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['detail.page.scss'],
 })
 export class DetailPage {
-  imageUrl: string | undefined;
-  quote: Quote | undefined;
+  imageUrl!: string;
+  quote!: Quote;
   comments: any[] = [];
-  comment: string | undefined;
+  comment!: string;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(({ quote, imageUrl }) => {
-      console.log(JSON.parse(quote));
-      console.log(imageUrl);
       this.quote = JSON.parse(quote);
       this.imageUrl = imageUrl;
     });
-    console.log(this.comments)
   }
 
   get backgroundStyle() {
@@ -35,5 +32,12 @@ export class DetailPage {
     if (this.comments.length > 5) {
       this.comments.reverse().pop();
     }
+  }
+
+  goToPhotomode(quote: Quote, imageUrl: string) {
+    let data = JSON.stringify(quote);
+    this.router.navigate(['/photomode'], {
+      queryParams: { quote: data, imageUrl },
+    });
   }
 }

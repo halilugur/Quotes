@@ -25,7 +25,9 @@ export class HomePage {
     private quoteService: QuoteService,
     private imageService: ImageService,
     private router: Router
-  ) {this.getImage()}
+  ) {
+    this.getImage();
+  }
 
   ngOnInit() {
     interval(this.TIME).subscribe(() => {

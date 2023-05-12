@@ -6,14 +6,8 @@ import { DetailPage } from './detail.page';
 
 import { DetailPageRoutingModule } from './detail-routing.module';
 
-
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    DetailPageRoutingModule
-  ],
-  declarations: [DetailPage]
+  imports: [CommonModule, FormsModule, IonicModule, DetailPageRoutingModule],
+  declarations: [DetailPage],
 })
 export class DetailPageModule {}

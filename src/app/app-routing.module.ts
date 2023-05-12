@@ -13,6 +13,11 @@ const routes: Routes = [
       import('./detail/detail.module').then((m) => m.DetailPageModule),
   },
   {
+    path: 'photomode',
+    loadChildren: () =>
+      import('./photomode/photomode.module').then((m) => m.PhotomodePageModule),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',

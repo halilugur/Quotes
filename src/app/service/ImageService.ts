@@ -10,7 +10,9 @@ export class ImageService {
 
   async getRandomImage(): Promise<string> {
     let imageUrl: string = this.API_URL;
-    await axios.get(this.API_URL).then((response) => (imageUrl = response.request.responseURL));
+    await axios
+      .get(this.API_URL)
+      .then((response) => (imageUrl = response.request.responseURL));
     return imageUrl;
   }
 }
