@@ -8,13 +8,26 @@ import { Component } from '@angular/core';
   styleUrls: ['detail.page.scss'],
 })
 export class DetailPage {
+  // Image url for background
   imageUrl!: string;
+  // A detail of :Quote
   quote!: Quote;
+  // User comments
   comments: any[] = [];
+  // input comment from user
   comment!: string;
 
+  /**
+   * Prepare services for using.
+   * 
+   * @param route getting parameters
+   * @param router navigate to the other pages
+   */
   constructor(private route: ActivatedRoute, private router: Router) {}
 
+  /**
+   * Prepare Quote and Image url for showing in detail page.
+   */
   ngOnInit() {
     this.route.queryParams.subscribe(({ quote, imageUrl }) => {
       this.quote = JSON.parse(quote);
@@ -22,10 +35,16 @@ export class DetailPage {
     });
   }
 
+  /**
+   * Set background for specific quote
+   */
   get backgroundStyle() {
     return `url('${this.imageUrl}')`;
   }
 
+  /**
+   * Each person can leave comment bottom of the quote.
+   */
   addComment() {
     this.comments?.push(this.comment);
     this.comment = '';
@@ -34,6 +53,12 @@ export class DetailPage {
     }
   }
 
+  /**
+   * Send quote and image url to the Photo Mode page.
+   * 
+   * @param quote a quote
+   * @param imageUrl an image url
+   */
   goToPhotomode(quote: Quote, imageUrl: string) {
     let data = JSON.stringify(quote);
     this.router.navigate(['/photomode'], {
